@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { MessageCircle, X, Send, Clock, MapPin, Phone, FlaskConical, Home, Stethoscope, ChevronRight, Bot, User } from 'lucide-react';
+import { MessageCircle, X, Send, Clock, MapPin, Phone, FlaskConical, Home, Stethoscope, ChevronRight, Bot, User, Activity } from 'lucide-react';
 
 /* =========================================================================
    CHATBOT KNOWLEDGE BASE & CONVERSATION FLOWS
@@ -273,29 +273,29 @@ export default function Chatbot() {
   return (
     <>
       {/* =====================================================================
-          FLOATING CHAT TRIGGER BUTTON
+          FLOATING CHAT TRIGGER BUTTON (matches brand emblem)
           ===================================================================== */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`fixed bottom-5 right-5 z-[60] w-14 h-14 sm:w-16 sm:h-16 rounded-full shadow-lg flex items-center justify-center transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
+        className={`fixed bottom-5 right-5 z-[60] w-12 h-12 rounded-xl shadow-lg flex items-center justify-center transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
           isOpen 
-            ? 'bg-ink text-cream rotate-0 scale-95 hover:bg-ink/90' 
+            ? 'bg-ink text-cream scale-95 hover:bg-ink/90' 
             : 'bg-primary text-white hover:bg-primary-dark hover:scale-110 hover:shadow-xl shadow-warm-lg'
         }`}
         aria-label={isOpen ? 'Close chat' : 'Open chat assistant'}
         style={{ 
           boxShadow: isOpen 
-            ? '0 4px 20px rgba(0,0,0,0.2)' 
-            : '0 4px 24px rgba(118,147,130,0.4), 0 0 0 4px rgba(118,147,130,0.1)' 
+            ? '0 4px 16px rgba(0,0,0,0.2)' 
+            : '0 4px 20px rgba(118,147,130,0.4), 0 0 0 3px rgba(118,147,130,0.1)' 
         }}
       >
         {isOpen ? (
-          <X className="w-6 h-6" />
+          <X className="w-5 h-5" />
         ) : (
           <>
-            <MessageCircle className="w-6 h-6 sm:w-7 sm:h-7" />
-            {/* Pulse ring animation */}
-            <span className="absolute inset-0 rounded-full bg-primary/30 animate-ping pointer-events-none" 
+            <Activity className="w-5 h-5" />
+            {/* Subtle pulse ring */}
+            <span className="absolute inset-0 rounded-xl bg-primary/30 animate-ping pointer-events-none" 
               style={{ animationDuration: '2.5s' }} 
             />
           </>
@@ -304,7 +304,7 @@ export default function Chatbot() {
 
       {/* Unread badge when closed */}
       {!isOpen && (
-        <span className="fixed bottom-[4.2rem] right-4 sm:bottom-[4.8rem] z-[61] bg-accent text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center shadow-coral-glow pointer-events-none animate-bounce"
+        <span className="fixed bottom-[3.6rem] right-4 z-[61] bg-accent text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center shadow-coral-glow pointer-events-none animate-bounce"
           style={{ animationDuration: '2s', animationDelay: '3s' }}
         >
           1
