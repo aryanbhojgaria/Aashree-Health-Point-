@@ -6,6 +6,7 @@ import WhyChooseUs from './components/WhyChooseUs';
 import Location from './components/Location';
 import FAQ from './components/FAQ';
 import ContactFooter from './components/ContactFooter';
+import Chatbot from './components/Chatbot';
 
 export default function App() {
   return (
@@ -24,6 +25,9 @@ export default function App() {
 
       {/* Contact & Closing Footer */}
       <ContactFooter />
+
+      {/* Floating Chatbot Widget */}
+      <Chatbot />
     </div>
   );
 }
