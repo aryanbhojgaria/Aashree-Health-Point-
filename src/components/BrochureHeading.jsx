@@ -1,9 +1,9 @@
 import React from 'react';
 
 /**
- * BrochureHeading
- * Replicates the official brochure's confident serif, uppercase,
- * bold, underlined section header treatment (e.g., "DOCTOR CONSULTATION AT HOME").
+ * BrochureHeading (Modernized for Phase 1)
+ * Elegant, confident serif heading with optional subtle underline.
+ * Clean, spacious modern healthcare feel without forced clutter.
  */
 export default function BrochureHeading({
   children,
@@ -11,16 +11,17 @@ export default function BrochureHeading({
   size = 'md',
   align = 'center',
   color = 'ink',
-  underline = true,
+  underline = false,
+  uppercase = false,
   className = '',
   ...props
 }) {
   const sizeClasses = {
-    sm: 'text-base sm:text-lg tracking-wide',
-    md: 'text-lg sm:text-xl md:text-2xl tracking-wide',
-    lg: 'text-xl sm:text-2xl md:text-3xl tracking-wide',
-    xl: 'text-2xl sm:text-3xl md:text-4xl tracking-wider',
-  }[size] || 'text-lg sm:text-xl md:text-2xl tracking-wide';
+    sm: 'text-lg sm:text-xl tracking-normal',
+    md: 'text-xl sm:text-2xl md:text-3xl tracking-tight',
+    lg: 'text-2xl sm:text-3xl md:text-4xl tracking-tight',
+    xl: 'text-3xl sm:text-4xl md:text-5xl tracking-tight',
+  }[size] || 'text-xl sm:text-2xl md:text-3xl tracking-tight';
 
   const alignClasses = {
     left: 'text-left',
@@ -33,15 +34,18 @@ export default function BrochureHeading({
     teal: 'text-teal',
     maroon: 'text-maroon',
     coral: 'text-coral-dark',
+    cream: 'text-cream',
   }[color] || 'text-ink';
 
   const underlineClass = underline
-    ? 'underline decoration-[1.5px] sm:decoration-2 underline-offset-[5px] decoration-current'
+    ? 'underline decoration-2 underline-offset-8 decoration-maroon/50'
     : '';
+
+  const caseClass = uppercase ? 'uppercase tracking-wide' : '';
 
   return (
     <Component
-      className={`font-serif font-bold uppercase transition-colors ${sizeClasses} ${alignClasses} ${colorClasses} ${underlineClass} ${className}`}
+      className={`font-serif font-bold transition-colors ${sizeClasses} ${alignClasses} ${colorClasses} ${underlineClass} ${caseClass} ${className}`}
       {...props}
     >
       {children}

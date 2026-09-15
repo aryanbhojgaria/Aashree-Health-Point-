@@ -1,18 +1,18 @@
 import React from 'react';
 
 /**
- * TaglineCallout
- * Replicates the brochure's prominent closing callout at the bottom of each service block.
- * Distinctly styled: larger, bold, uppercase, underlined, and either centered or right-aligned.
- * (e.g., "RECOVER FASTER", "DON'T WAIT. VACCINATE", "So no more queuing and no more waiting.")
+ * TaglineCallout (Modernized for Phase 1)
+ * Reserved for subtle, impactful brand accents rather than harsh stamps:
+ * - Soft typography (no forced underline or all-caps by default)
+ * - Flexible alignment and sizing
  */
 export default function TaglineCallout({
   children,
   align = 'center',
-  size = 'lg',
-  color = 'ink',
-  underline = true,
-  uppercase = true,
+  size = 'md',
+  color = 'teal',
+  underline = false,
+  uppercase = false,
   className = '',
   ...props
 }) {
@@ -23,28 +23,29 @@ export default function TaglineCallout({
   }[align] || 'text-center justify-center';
 
   const sizeClasses = {
-    md: 'text-base sm:text-lg',
-    lg: 'text-lg sm:text-xl md:text-2xl',
-    xl: 'text-xl sm:text-2xl md:text-3xl',
-  }[size] || 'text-lg sm:text-xl md:text-2xl';
+    sm: 'text-xs sm:text-sm',
+    md: 'text-sm sm:text-base',
+    lg: 'text-base sm:text-lg',
+    xl: 'text-lg sm:text-xl font-serif',
+  }[size] || 'text-sm sm:text-base';
 
   const colorClasses = {
-    ink: 'text-ink',
-    teal: 'text-teal',
-    maroon: 'text-maroon',
-    coral: 'text-coral-dark',
-  }[color] || 'text-ink';
+    ink: 'text-ink/80',
+    teal: 'text-teal font-semibold',
+    maroon: 'text-maroon font-semibold',
+    coral: 'text-coral-dark font-semibold',
+  }[color] || 'text-teal font-semibold';
 
   const underlineClass = underline
-    ? 'underline decoration-[1.5px] sm:decoration-2 underline-offset-[6px] decoration-current'
+    ? 'underline decoration-1 underline-offset-4 decoration-current/40'
     : '';
 
-  const caseClass = uppercase ? 'uppercase' : '';
+  const caseClass = uppercase ? 'uppercase tracking-wider' : '';
 
   return (
-    <div className={`w-full flex pt-3 sm:pt-4 ${alignClasses}`}>
+    <div className={`w-full flex pt-2 ${alignClasses}`}>
       <span
-        className={`font-serif font-bold tracking-wider ${sizeClasses} ${colorClasses} ${underlineClass} ${caseClass} ${className}`}
+        className={`font-sans ${sizeClasses} ${colorClasses} ${underlineClass} ${caseClass} ${className}`}
         {...props}
       >
         {children}
