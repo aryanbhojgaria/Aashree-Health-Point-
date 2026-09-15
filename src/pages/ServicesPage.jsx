@@ -215,7 +215,7 @@ export default function ServicesPage() {
         
         {/* Editorial Page Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/40 border border-ink/10 text-xs font-semibold text-ink uppercase tracking-wider shadow-sm">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FAF0ED]/60 border border-ink/10 text-xs font-semibold text-ink uppercase tracking-wider shadow-sm">
             <Sparkles className="w-3.5 h-3.5 text-maroon" />
             <span>Clinical Services Catalog &bull; [Inspiring Health]</span>
           </div>
@@ -236,7 +236,7 @@ export default function ServicesPage() {
         </div>
 
         {/* Sticky Category Quick Jump Navigation */}
-        <div className="sticky top-20 z-30 bg-white/95 backdrop-blur-md rounded-2xl p-2 shadow-card border border-black/[0.05] overflow-x-auto scrollbar-none">
+        <div className="sticky top-20 z-30 bg-[#F4E3DF]/95 backdrop-blur-md rounded-2xl p-2 shadow-card border border-black/[0.05] overflow-x-auto scrollbar-none">
           <div className="flex items-center justify-start sm:justify-center gap-2 min-w-max px-1">
             {serviceCategories.map((cat) => {
               const Icon = cat.icon;
@@ -250,7 +250,7 @@ export default function ServicesPage() {
                   className={`touch-target flex items-center gap-2 px-4 py-2.5 rounded-xl font-sans text-xs sm:text-sm font-bold transition-all cursor-pointer whitespace-nowrap ${
                     isSelected
                       ? 'bg-teal text-cream shadow-sm'
-                      : 'text-ink/80 hover:text-teal hover:bg-cream-50'
+                      : 'text-ink/80 hover:text-teal hover:bg-[#FAF0ED]'
                   }`}
                 >
                   <Icon className="w-4 h-4 shrink-0" />
@@ -274,7 +274,7 @@ export default function ServicesPage() {
                 className="scroll-mt-36 space-y-8"
               >
                 {/* Category Header Card */}
-                <div className="bg-white rounded-3xl p-6 sm:p-8 lg:p-10 shadow-card border border-black/[0.04] flex flex-col md:flex-row md:items-center justify-between gap-6">
+                <div className="bg-[#FAF0ED] rounded-3xl p-6 sm:p-8 lg:p-10 shadow-card border border-black/[0.04] flex flex-col md:flex-row md:items-center justify-between gap-6">
                   <div className="flex items-start sm:items-center gap-4">
                     <div className={`w-14 h-14 sm:w-16 sm:h-16 rounded-2xl flex items-center justify-center shrink-0 ${cat.accentStyles.pillBg}`}>
                       <Icon className="w-7 h-7 sm:w-8 sm:h-8" />
@@ -306,7 +306,7 @@ export default function ServicesPage() {
                   {cat.services.map((service) => (
                     <div
                       key={service.id}
-                      className="bg-white rounded-3xl p-6 sm:p-7 shadow-card hover:shadow-card-hover transition-all duration-300 border border-black/[0.04] flex flex-col justify-between"
+                      className="bg-[#FAF0ED] rounded-3xl p-6 sm:p-7 shadow-card hover:shadow-card-hover transition-all duration-300 border border-black/[0.04] flex flex-col justify-between"
                     >
                       <div className="space-y-4">
                         {/* Service Header */}
@@ -395,7 +395,7 @@ export default function ServicesPage() {
               href={`https://wa.me/91${primaryPhone}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="touch-target inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-white text-ink font-bold text-sm hover:bg-cream-50 transition-all shadow-sm"
+              className="touch-target inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-[#FAF0ED] text-ink font-bold text-sm hover:bg-[#F5E5E0] transition-all shadow-sm"
             >
               <MessageCircle className="w-4 h-4 text-teal" />
               <span>WhatsApp Consultation Desk</span>
