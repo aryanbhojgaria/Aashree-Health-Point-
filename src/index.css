@@ -8,7 +8,7 @@
   }
 
   body {
-    @apply bg-cream text-ink antialiased;
+    @apply bg-coral text-ink antialiased;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 
@@ -27,7 +27,7 @@
 
   /* Subtle dot matrix pattern for background depth */
   .bg-dot-pattern {
-    background-image: radial-gradient(rgba(118, 147, 130, 0.22) 1.2px, transparent 1.2px);
+    background-image: radial-gradient(rgba(26, 77, 77, 0.15) 1.2px, transparent 1.2px);
     background-size: 24px 24px;
   }
 }

@@ -7,50 +7,76 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Brand palette tokens
+        // Official Brochure Color Tokens
+        // Background/primary brand color: coral/terracotta #D98878
+        coral: {
+          DEFAULT: '#D98878',
+          light: '#E6A395',
+          dark: '#C27160',
+          subtle: '#F6DDD8',
+          deep: '#A34F40',
+        },
+        // Deep teal: #1A4D4D (used in logo, headings, "About Us" style headers)
+        teal: {
+          DEFAULT: '#1A4D4D',
+          light: '#2B6A6A',
+          dark: '#113535',
+          subtle: '#E2EDED',
+          surface: '#F0F6F6',
+        },
+        // Maroon/wine: #7A1F3D (used in logo accent, "HEALTH POINT" wordmark)
+        maroon: {
+          DEFAULT: '#7A1F3D',
+          light: '#993053',
+          dark: '#59122A',
+          subtle: '#F5E3E8',
+          surface: '#FAF0F3',
+        },
+        // Cream/off-white: #F0E4D0 (used as card/panel background against coral)
+        cream: {
+          DEFAULT: '#F0E4D0',
+          50: '#FAF6EF',
+          100: '#F5ECE0',
+          200: '#F0E4D0',
+          300: '#E4D3BA',
+          muted: '#DEC8AA',
+          border: '#D3BFA4',
+        },
+        // Dark ink text: near-black brown #2B1810 for body copy on cream/white panels
+        ink: {
+          DEFAULT: '#2B1810',
+          light: '#4B3327',
+          muted: '#6F5447',
+          subtle: '#9A7E70',
+          border: '#2B1810',
+        },
+
+        // Semantic aliases for cross-compatibility
         primary: {
-          DEFAULT: '#769382', // Sage green base
-          light: '#8FAAA0',
-          dark: '#5B7767',
-          subtle: '#E8EFEA',
-          surface: '#F0F5F2',
+          DEFAULT: '#D98878', // Coral background/brand primary
+          light: '#E6A395',
+          dark: '#C27160',
+          subtle: '#F6DDD8',
         },
         secondary: {
-          DEFAULT: '#C0C3B9', // Sage-gray base
-          light: '#DCE0D7',
-          dark: '#9FA397',
-          subtle: '#EAECE6',
-        },
-        cream: {
-          DEFAULT: '#F3EFE3', // Warm cream background
-          50: '#FAF8F2',
-          100: '#F3EFE3',
-          200: '#E8E2D2',
-          300: '#DDD5C0',
-          muted: '#E5DFCD',
-        },
-        ink: {
-          DEFAULT: '#2B2A26', // Warm ink/charcoal text
-          light: '#484640',
-          muted: '#6E6B62',
-          subtle: '#99968D',
-          border: '#DDD8CB',
+          DEFAULT: '#1A4D4D', // Deep teal
+          light: '#2B6A6A',
+          dark: '#113535',
+          subtle: '#E2EDED',
         },
         accent: {
-          DEFAULT: '#D96B43', // Warm terracotta/coral CTA
-          hover: '#C25A33',
-          active: '#A94B28',
-          light: '#FBECE7',
-          glow: 'rgba(217, 107, 67, 0.25)',
+          DEFAULT: '#7A1F3D', // Maroon / wine
+          light: '#993053',
+          dark: '#59122A',
+          subtle: '#F5E3E8',
         },
       },
       fontFamily: {
-        serif: ['"Fraunces"', '"DM Serif Display"', 'Georgia', 'serif'],
-        display: ['"Fraunces"', '"DM Serif Display"', 'Georgia', 'serif'],
+        serif: ['"Playfair Display"', 'Georgia', 'serif'],
+        display: ['"Playfair Display"', 'Georgia', 'serif'],
         sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
       },
       fontSize: {
-        // Fluid typography tokens for small screen safety & rich desktop scaling
         'fluid-xs': 'clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem)',
         'fluid-sm': 'clamp(0.875rem, 0.825rem + 0.25vw, 1rem)',
         'fluid-base': 'clamp(1rem, 0.95rem + 0.25vw, 1.125rem)',
@@ -71,10 +97,11 @@ export default {
         'tap-lg': '48px',
       },
       boxShadow: {
-        'warm-sm': '0 1px 2px 0 rgba(43, 42, 38, 0.05)',
-        'warm': '0 4px 12px -2px rgba(43, 42, 38, 0.08), 0 2px 6px -1px rgba(43, 42, 38, 0.04)',
-        'warm-lg': '0 12px 28px -4px rgba(43, 42, 38, 0.12), 0 4px 12px -2px rgba(43, 42, 38, 0.06)',
-        'coral-glow': '0 8px 24px -4px rgba(217, 107, 67, 0.35)',
+        'brochure': '0 2px 8px -1px rgba(43, 24, 16, 0.08), 0 1px 3px -1px rgba(43, 24, 16, 0.04)',
+        'brochure-md': '0 6px 16px -2px rgba(43, 24, 16, 0.12), 0 2px 6px -1px rgba(43, 24, 16, 0.06)',
+        'brochure-lg': '0 12px 28px -4px rgba(43, 24, 16, 0.16), 0 4px 12px -2px rgba(43, 24, 16, 0.08)',
+        'teal-glow': '0 8px 24px -4px rgba(26, 77, 77, 0.35)',
+        'maroon-glow': '0 8px 24px -4px rgba(122, 31, 61, 0.35)',
       },
       spacing: {
         'section-sm': '4rem',
