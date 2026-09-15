@@ -193,7 +193,7 @@ export default function ServicePillars() {
             Single GSAP scrub controller - Zero React state churn during scroll.
             ===================================================================== */}
         <div className="hidden md:block">
-          <div className="bg-white rounded-3xl p-8 lg:p-10 shadow-card border border-black/[0.04]">
+          <div className="bg-[#FAF0ED] rounded-3xl p-8 lg:p-10 shadow-card border border-black/[0.04]">
             <div className="grid grid-cols-12 gap-8 items-center">
               
               {/* Left Column: Progress Step Indicators */}
@@ -258,7 +258,7 @@ export default function ServicePillars() {
                           <div className={`w-14 h-14 rounded-2xl flex items-center justify-center ${cat.bgTint}`}>
                             <Icon className="w-7 h-7" />
                           </div>
-                          <span className="text-xs font-mono font-bold text-ink/60 bg-white px-3 py-1 rounded-full shadow-sm">
+                          <span className="text-xs font-mono font-bold text-ink/60 bg-[#FAF0ED] px-3 py-1 rounded-full shadow-sm">
                             Pillar {cat.step} of 04
                           </span>
                         </div>

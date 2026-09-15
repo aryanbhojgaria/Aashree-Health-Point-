@@ -27,11 +27,11 @@ export default function BrochurePanel({
   ...props
 }) {
   const bgClasses = {
-    white: 'bg-white text-ink',
+    white: 'bg-[#FAF0ED] text-ink',
     cream: 'bg-cream-50 text-ink',
     'cream-50': 'bg-cream-50 text-ink',
     'cream-100': 'bg-cream-100 text-ink',
-  }[bg] || 'bg-white text-ink';
+  }[bg] || 'bg-[#FAF0ED] text-ink';
 
   const borderClasses = {
     none: 'border-0',

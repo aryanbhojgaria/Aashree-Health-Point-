@@ -46,7 +46,7 @@ export default function ServiceCard({
 
   const CardContent = (
     <div
-      className={`group relative bg-white rounded-2xl p-6 sm:p-7 transition-all duration-300 hover:shadow-card-hover hover:-translate-y-0.5 flex flex-col justify-between h-full ${className}`}
+      className={`group relative bg-[#FAF0ED] rounded-2xl p-6 sm:p-7 transition-all duration-300 hover:shadow-card-hover hover:-translate-y-0.5 flex flex-col justify-between h-full ${className}`}
     >
       <div>
         {/* Header: Icon + optional badge */}

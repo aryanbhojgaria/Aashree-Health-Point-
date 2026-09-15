@@ -72,7 +72,7 @@ export default function WhyChooseUs() {
   };
 
   return (
-    <section id="why-choose-us" className="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 bg-white">
+    <section id="why-choose-us" className="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 bg-[#FAF0ED]">
       <div className="max-w-5xl mx-auto space-y-8 sm:space-y-10">
         
         <div className="text-center max-w-xl mx-auto space-y-2">

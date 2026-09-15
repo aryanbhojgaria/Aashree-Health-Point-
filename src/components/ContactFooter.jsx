@@ -33,7 +33,7 @@ export default function ContactFooter() {
           {/* Col 1: Brand & Site Navigation Links */}
           <div className="md:col-span-4 space-y-4">
             <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-xl bg-white text-teal flex items-center justify-center shadow-sm">
+              <div className="w-9 h-9 rounded-xl bg-[#FAF0ED] text-teal flex items-center justify-center shadow-sm">
                 <div className="relative w-5 h-5 flex items-center justify-center">
                   <div className="absolute w-5 h-1.5 bg-teal rounded-sm" />
                   <div className="absolute w-1.5 h-5 bg-teal rounded-sm" />

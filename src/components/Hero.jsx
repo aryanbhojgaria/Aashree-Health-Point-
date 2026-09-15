@@ -67,11 +67,11 @@ export default function Hero() {
       >
         {/* Modern Medical Cross Emblem */}
         <motion.div variants={itemVariants} className="flex justify-center mb-5">
-          <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white shadow-card flex items-center justify-center relative">
+          <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-[#FAF0ED] shadow-card flex items-center justify-center relative">
             <div className="relative w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center">
               <div className="absolute w-8 sm:w-9 h-3 bg-teal rounded-sm" />
               <div className="absolute w-3 h-8 sm:h-9 bg-teal rounded-sm" />
-              <div className="absolute w-3.5 h-3.5 bg-maroon rounded-full border-2 border-white" />
+              <div className="absolute w-3.5 h-3.5 bg-maroon rounded-full border-2 border-[#FAF0ED]" />
             </div>
           </div>
         </motion.div>
@@ -118,7 +118,7 @@ export default function Hero() {
             href={`https://wa.me/91${primaryPhone}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="touch-target w-full sm:w-auto flex-1 inline-flex items-center justify-center gap-2.5 px-6 py-3.5 bg-white hover:bg-cream-50 text-ink font-sans font-bold text-sm sm:text-base rounded-xl shadow-card hover:shadow-card-hover transition-all active:scale-[0.98]"
+            className="touch-target w-full sm:w-auto flex-1 inline-flex items-center justify-center gap-2.5 px-6 py-3.5 bg-[#FAF0ED] hover:bg-[#F5E5E0] text-ink font-sans font-bold text-sm sm:text-base rounded-xl shadow-card hover:shadow-card-hover transition-all active:scale-[0.98]"
             aria-label="WhatsApp Aashree Health Point"
           >
             <MessageCircle className="w-4 h-4 text-teal" />
