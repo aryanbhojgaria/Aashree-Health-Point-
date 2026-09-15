@@ -128,7 +128,7 @@ export default function StyleGuidePreview({ onSwitchToSite }) {
                 Company Brochure Design Tokens
               </h2>
               <p className="text-ink/80 text-sm sm:text-base leading-relaxed">
-                The previous sage-green palette has been completely replaced with the official brochure tokens extracted from the PDF: Coral/Terracotta (<code className="bg-coral/30 px-1 py-0.5 rounded text-ink font-semibold">#D98878</code>) background canvas, Deep Teal (<code className="bg-teal/15 px-1 py-0.5 rounded text-teal font-semibold">#1A4D4D</code>), Maroon (<code className="bg-maroon/15 px-1 py-0.5 rounded text-maroon font-semibold">#7A1F3D</code>), Cream panels (<code className="bg-ink/10 px-1 py-0.5 rounded text-ink font-semibold">#F0E4D0</code>), and Dark Ink (<code className="bg-ink/10 px-1 py-0.5 rounded text-ink font-semibold">#2B1810</code>).
+                The design system is aligned with the official brochure tokens extracted from the PDF: Coral/Terracotta (<code className="bg-coral/30 px-1 py-0.5 rounded text-ink font-semibold">#D98878</code>) background canvas, Deep Teal (<code className="bg-teal/15 px-1 py-0.5 rounded text-teal font-semibold">#1A4D4D</code>), Maroon (<code className="bg-maroon/15 px-1 py-0.5 rounded text-maroon font-semibold">#7A1F3D</code>), Cream panels (<code className="bg-ink/10 px-1 py-0.5 rounded text-ink font-semibold">#F0E4D0</code>), and Dark Ink (<code className="bg-ink/10 px-1 py-0.5 rounded text-ink font-semibold">#2B1810</code>).
               </p>
             </div>
 

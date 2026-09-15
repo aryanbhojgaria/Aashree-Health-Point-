@@ -1,18 +1,23 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Phone, MessageCircle, Menu, X, Clock, MapPin } from 'lucide-react';
-
-const navLinks = [
-  { href: '#', label: 'Home' },
-  { href: '#about', label: 'About Us' },
-  { href: '#services', label: 'Services' },
-  { href: '#why-choose-us', label: 'Why Choose Us' },
-  { href: '#location', label: 'Location' },
-  { href: '#contact', label: 'Contact' },
-];
+import { Link, NavLink, useLocation } from 'react-router-dom';
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const menuRef = useRef(null);
+  const { pathname } = useLocation();
+
+  // Track scroll position to transition from transparent to solid after hero
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Close mobile menu on outside click
   useEffect(() => {
@@ -38,12 +43,24 @@ export default function Navbar() {
     };
   }, [mobileOpen]);
 
-  const handleLinkClick = () => setMobileOpen(false);
+  // The 4 distinct multi-page routes
+  const navItems = [
+    { to: '/', label: 'Home', end: true },
+    { to: '/about', label: 'About Us', end: false },
+    { to: '/services', label: 'Services', end: false },
+    { to: '/contact', label: 'Contact', end: false },
+  ];
 
   return (
-    <header className="sticky top-0 z-50 bg-cream/95 backdrop-blur-md border-b-[1.5px] border-ink/30 transition-all duration-200">
-      {/* Top quick announcement bar */}
-      <div className="bg-teal text-cream text-[11px] sm:text-xs py-1.5 px-4">
+    <header
+      className={`sticky top-0 z-50 transition-all duration-300 ease-out ${
+        isScrolled || mobileOpen || pathname !== '/'
+          ? 'bg-cream-50/95 sm:bg-white/95 backdrop-blur-md border-b border-black/[0.06] shadow-card'
+          : 'bg-cream-50/80 backdrop-blur-sm border-b border-transparent shadow-none'
+      }`}
+    >
+      {/* Top quick announcement & contact bar */}
+      <div className="bg-teal text-cream text-[11px] sm:text-xs py-1.5 px-4 transition-colors">
         <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
           <div className="flex items-center gap-4">
             <span className="flex items-center gap-1.5 font-medium">
@@ -70,18 +87,17 @@ export default function Navbar() {
 
       {/* Main Navbar */}
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
-        {/* Brand Wordmark & Official Brochure Emblem */}
-        <a
-          href="#"
+        {/* Brand Wordmark & Medical Care Emblem */}
+        <Link
+          to="/"
           className="flex items-center gap-2.5 sm:gap-3 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal rounded-lg p-1"
           aria-label="Aashree Health Point Home"
         >
-          {/* Authentic Cross Logo */}
-          <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-none bg-cream border border-ink/40 flex items-center justify-center relative shadow-sm group-hover:border-teal transition-colors">
+          <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-white shadow-sm flex items-center justify-center relative group-hover:scale-105 transition-transform duration-200">
             <div className="relative w-6 h-6 flex items-center justify-center">
-              <div className="absolute w-6 h-2 bg-teal rounded-[1px]" />
-              <div className="absolute w-2 h-6 bg-teal rounded-[1px]" />
-              <div className="absolute w-2.5 h-2.5 bg-maroon rounded-full border border-cream" />
+              <div className="absolute w-6 h-2 bg-teal rounded-sm" />
+              <div className="absolute w-2 h-6 bg-teal rounded-sm" />
+              <div className="absolute w-2.5 h-2.5 bg-maroon rounded-full border border-white" />
             </div>
           </div>
 
@@ -92,23 +108,36 @@ export default function Navbar() {
             <span className="text-[10px] sm:text-xs font-sans font-bold tracking-[0.2em] text-maroon leading-tight mt-0.5">
               HEALTH POINT
             </span>
-            <span className="text-[8px] sm:text-[9px] font-sans font-semibold uppercase tracking-widest text-ink/70 hidden sm:block">
+            <span className="text-[8px] sm:text-[9px] font-sans font-semibold uppercase tracking-widest text-ink/60 hidden sm:block">
               Affirmity &bull; Accuracy &bull; Affordable
             </span>
           </div>
-        </a>
+        </Link>
 
-        {/* Desktop Navigation Links */}
+        {/* Desktop Multi-Page Route Links (Home, About Us, Services, Contact) */}
         <div className="hidden lg:flex items-center gap-1 xl:gap-2">
-          {navLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              className="px-3 py-2 text-sm font-sans font-semibold text-ink/85 hover:text-teal rounded transition-colors relative group"
+          {navItems.map((item) => (
+            <NavLink
+              key={item.to}
+              to={item.to}
+              end={item.end}
+              className={({ isActive }) =>
+                `px-3.5 py-2 text-sm font-sans rounded-xl transition-all relative ${
+                  isActive
+                    ? 'text-teal font-bold bg-teal/10 shadow-sm'
+                    : 'text-ink/80 hover:text-teal hover:bg-black/[0.03] font-semibold'
+                }`
+              }
             >
-              {link.label}
-              <span className="absolute bottom-1 left-3 right-3 h-0.5 bg-maroon scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
-            </a>
+              {({ isActive }) => (
+                <>
+                  <span>{item.label}</span>
+                  {isActive && (
+                    <span className="absolute bottom-0 left-3 right-3 h-0.5 bg-maroon rounded-full" />
+                  )}
+                </>
+              )}
+            </NavLink>
           ))}
         </div>
 
@@ -118,28 +147,28 @@ export default function Navbar() {
             href="https://wa.me/917003799755"
             target="_blank"
             rel="noopener noreferrer"
-            className="touch-target inline-flex items-center gap-1.5 px-3.5 py-2 rounded-none bg-cream border-[1.5px] border-ink text-ink font-bold text-xs hover:bg-teal hover:text-cream hover:border-teal transition-colors shadow-sm"
+            className="touch-target inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white hover:bg-cream-50 text-ink font-sans font-bold text-xs shadow-sm border border-black/[0.05] transition-all"
             aria-label="WhatsApp Aashree Health Point at 7003799755"
           >
-            <MessageCircle className="w-4 h-4 text-teal group-hover:text-cream" />
+            <MessageCircle className="w-4 h-4 text-teal" />
             <span>WhatsApp</span>
           </a>
 
           <a
             href="tel:+917003799755"
-            className="touch-target inline-flex items-center gap-1.5 px-4 py-2 rounded-none bg-teal text-cream font-bold text-xs hover:bg-teal-dark border-[1.5px] border-teal transition-colors shadow-sm"
+            className="touch-target inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-teal text-cream font-sans font-bold text-xs hover:bg-teal-dark shadow-sm transition-all active:scale-[0.98]"
             aria-label="Call Aashree Health Point at 7003799755"
           >
             <Phone className="w-4 h-4" />
-            <span>Call: 7003799755</span>
+            <span>Call: 70037 99755</span>
           </a>
         </div>
 
-        {/* Mobile Hamburger Toggle */}
+        {/* Mobile Hamburger Toggle & Quick Call */}
         <div className="flex items-center gap-2 lg:hidden">
           <a
             href="tel:+917003799755"
-            className="touch-target inline-flex items-center justify-center p-2 rounded-none bg-teal text-cream sm:hidden border border-teal"
+            className="touch-target inline-flex items-center justify-center p-2 rounded-xl bg-teal text-cream sm:hidden shadow-sm"
             aria-label="Call Now"
           >
             <Phone className="w-4 h-4" />
@@ -148,7 +177,7 @@ export default function Navbar() {
           <button
             type="button"
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="touch-target inline-flex items-center justify-center p-2.5 rounded-none bg-cream border-[1.5px] border-ink text-ink hover:bg-ink hover:text-cream transition-colors"
+            className="touch-target inline-flex items-center justify-center p-2.5 rounded-xl bg-white text-ink hover:bg-cream-50 transition-colors shadow-sm"
             aria-label={mobileOpen ? 'Close Navigation Menu' : 'Open Navigation Menu'}
             aria-expanded={mobileOpen}
           >
@@ -161,26 +190,40 @@ export default function Navbar() {
       {mobileOpen && (
         <div
           ref={menuRef}
-          className="lg:hidden bg-cream border-b-2 border-ink px-4 py-6 shadow-xl space-y-4 animate-fade-in"
+          className="lg:hidden bg-white border-b border-black/[0.08] px-4 py-6 shadow-xl space-y-4 animate-fade-in"
         >
-          <div className="flex flex-col space-y-2 border-b border-ink/20 pb-4">
-            {navLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                onClick={handleLinkClick}
-                className="touch-target flex items-center px-3 py-2 text-base font-serif font-bold text-ink hover:text-teal hover:bg-coral/20 transition-colors"
+          <div className="flex flex-col space-y-1 border-b border-black/[0.06] pb-4">
+            {navItems.map((item) => (
+              <NavLink
+                key={item.to}
+                to={item.to}
+                end={item.end}
+                onClick={() => setMobileOpen(false)}
+                className={({ isActive }) =>
+                  `touch-target flex items-center justify-between px-3.5 py-3 rounded-xl text-base font-sans font-bold text-left transition-colors ${
+                    isActive ? 'text-teal bg-teal/10' : 'text-ink hover:text-teal hover:bg-black/[0.02]'
+                  }`
+                }
               >
-                {link.label}
-              </a>
+                {({ isActive }) => (
+                  <>
+                    <span>{item.label}</span>
+                    {isActive && (
+                      <span className="text-xs text-maroon font-mono uppercase bg-maroon/10 px-2 py-0.5 rounded-md">
+                        Active
+                      </span>
+                    )}
+                  </>
+                )}
+              </NavLink>
             ))}
           </div>
 
           <div className="space-y-2 pt-2">
             <a
               href="tel:+917003799755"
-              className="touch-target w-full flex items-center justify-center gap-2 py-3 bg-teal text-cream font-bold text-sm border-[1.5px] border-teal shadow-sm"
-              onClick={handleLinkClick}
+              className="touch-target w-full flex items-center justify-center gap-2 py-3 bg-teal text-cream rounded-xl font-bold text-sm shadow-sm"
+              onClick={() => setMobileOpen(false)}
             >
               <Phone className="w-4 h-4" />
               <span>Call Primary: +91 70037 99755</span>
@@ -190,21 +233,12 @@ export default function Navbar() {
               href="https://wa.me/917003799755"
               target="_blank"
               rel="noopener noreferrer"
-              className="touch-target w-full flex items-center justify-center gap-2 py-3 bg-cream text-ink font-bold text-sm border-[1.5px] border-ink hover:bg-cream-100"
-              onClick={handleLinkClick}
+              className="touch-target w-full flex items-center justify-center gap-2 py-3 bg-cream-50 text-ink rounded-xl font-bold text-sm border border-black/[0.05]"
+              onClick={() => setMobileOpen(false)}
             >
               <MessageCircle className="w-4 h-4 text-teal" />
               <span>WhatsApp Us: +91 70037 99755</span>
             </a>
-
-            <div className="text-center pt-2">
-              <span className="text-[11px] text-ink/70 uppercase tracking-wider block font-semibold">
-                Alternate Reachable Lines:
-              </span>
-              <p className="text-xs font-mono text-ink font-medium mt-0.5">
-                9443343502 &bull; 7596905078 &bull; 7858974548
-              </p>
-            </div>
           </div>
         </div>
       )}

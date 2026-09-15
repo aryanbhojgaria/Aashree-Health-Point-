@@ -1,127 +1,321 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import { Stethoscope, Activity, HeartHandshake, ShieldPlus, ArrowRight, Check } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import BrochureHeading from './BrochureHeading';
-import BrochurePanel from './BrochurePanel';
-import TaglineCallout from './TaglineCallout';
-import { Stethoscope, Activity, HeartHandshake, ShieldPlus, ArrowRight } from 'lucide-react';
+import ServiceCard from './ServiceCard';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-const pillars = [
+gsap.registerPlugin(ScrollTrigger);
+
+const categories = [
   {
     id: 'doctor-care',
-    title: 'DOCTOR CARE',
+    title: 'Doctor Care',
+    step: '01',
     icon: Stethoscope,
-    iconColor: 'text-teal',
-    summary:
-      'Comprehensive in-home physician visits and timely online tele-consultations for chronic condition management, acute illnesses, and specialized referrals in the comfort of your home.',
-    features: ['Home Physician Visits', 'Online Tele-Consultation', 'No Clinic Waiting or Queuing'],
-    tagline: 'So no more queuing and no more waiting.',
-    link: '/services#doctor-care',
+    accentColor: 'teal',
+    bgTint: 'bg-teal/10 text-teal',
+    activeBg: 'bg-teal text-cream',
+    description: 'Expert home visits by experienced physicians, online consultations, and continuous chronic illness monitoring.',
+    features: ['Doctor visits at home', 'Tele-consultation anywhere', 'Preventive health management'],
+    href: '/services#doctor-care',
   },
   {
     id: 'diagnostics',
-    title: 'DIAGNOSTICS & LAB',
+    title: 'Diagnostics & Lab',
+    step: '02',
     icon: Activity,
-    iconColor: 'text-maroon',
-    summary:
-      'High-quality, reliable tests delivered with free home sample collection. NABL accredited blood pathology, portable X-rays, ECG, and ultrasound at up to 50% discount.',
-    features: ['Free Home Sample Collection', 'NABL Accredited Reports', 'Portable X-Ray, ECG & Ultrasound'],
-    tagline: 'CONVENIENT AND EFFORTLESS',
-    link: '/services#diagnostics',
+    accentColor: 'maroon',
+    bgTint: 'bg-maroon/10 text-maroon',
+    activeBg: 'bg-maroon text-cream',
+    description: 'Accurate, NABL-accredited blood pathology and home radiology tests with free sample collection at your doorstep.',
+    features: ['Free doorstep collection', 'Digital online reports', 'Up to 50% test discount'],
+    href: '/services#diagnostics',
   },
   {
     id: 'home-nursing',
-    title: 'HOME NURSING & SPECIALIZED CARE',
+    title: 'Home Nursing & Specialized Care',
+    step: '03',
     icon: HeartHandshake,
-    iconColor: 'text-teal',
-    summary:
-      'Trained professional nurses available for 12 or 24 hours, clinical procedures (dressings, IV infusions, catheters), physiotherapy, home dialysis, and compassionate palliative support.',
-    features: ['12h / 24h Trained Nurses', 'Doctor & Nurse Home Procedures', 'Dialysis & Palliative Care'],
-    tagline: 'DELIVERING HOPE',
-    link: '/services#home-nursing',
+    accentColor: 'teal',
+    bgTint: 'bg-teal/10 text-teal',
+    activeBg: 'bg-teal text-cream',
+    description: 'Trained 12h/24h professional nurses, clinical medical procedures, physiotherapy recovery, and dialysis support.',
+    features: ['12h & 24h trained nurses', '13 clinical home procedures', 'Physiotherapy & dialysis'],
+    href: '/services#home-nursing',
   },
   {
     id: 'wellness',
-    title: 'WELLNESS & PREVENTION',
+    title: 'Wellness & Prevention',
+    step: '04',
     icon: ShieldPlus,
-    iconColor: 'text-maroon',
-    summary:
-      'Proactive care for families and housing societies with residential complex doctors, adult immunization drives, comprehensive health checkup packages, and senior citizen subscriptions.',
-    features: ['Senior Citizen Subscriptions', 'Adult Vaccination at Home', 'Residential Complex Physician'],
-    tagline: 'REDEFINING HEALTH CARE',
-    link: '/services#wellness',
+    accentColor: 'maroon',
+    bgTint: 'bg-maroon/10 text-maroon',
+    activeBg: 'bg-maroon text-cream',
+    description: 'Elder care subscriptions, adult vaccinations at home, preventive health packages, and residential complex doctors.',
+    features: ['Senior citizen subscriptions', '8 adult vaccines at home', 'Housing complex physician'],
+    href: '/services#wellness',
   },
 ];
 
 export default function ServicePillars() {
-  return (
-    <section id="services" className="relative bg-coral py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 border-t-[1.5px] border-ink/20">
-      <div className="max-w-7xl mx-auto space-y-8 sm:space-y-12">
-        
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-3">
-          <BrochureHeading as="h2" size="lg" align="center" color="ink">
-            OUR SERVICE CATEGORIES
-          </BrochureHeading>
-          <p className="text-sm sm:text-base text-ink/90 font-sans leading-relaxed">
-            From routine checkups to specialized home medical care, explore our four core pillars designed to eliminate the stress of clinic visits and long hospital commutes.
-          </p>
-        </div>
+  const sectionRef = useRef(null);
+  const cardsRef = useRef([]);
+  const buttonsRef = useRef([]);
 
-        {/* 4 Pillar Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-          {pillars.map((pillar) => {
-            const Icon = pillar.icon;
-            return (
-              <BrochurePanel
-                key={pillar.id}
-                title={pillar.title}
-                titleSize="md"
-                titleAlign="center"
-                tagline={pillar.tagline}
-                taglineSize="md"
-                className="flex flex-col justify-between h-full"
-              >
-                {/* Pillar Header with Icon */}
-                <div className="flex items-center justify-center gap-2 mb-3">
-                  <div className="p-2 bg-coral/20 border border-ink/20">
-                    <Icon className={`w-5 h-5 ${pillar.iconColor}`} />
-                  </div>
-                </div>
+  useEffect(() => {
+    // Check for user's reduced-motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
 
-                {/* 1-2 sentence summary */}
-                <p className="text-sm sm:text-base text-ink/90 leading-relaxed text-center sm:text-left">
-                  {pillar.summary}
-                </p>
+    // Use gsap.context for bulletproof cleanup and scoped selector management
+    const ctx = gsap.context(() => {
+      const mm = gsap.matchMedia();
 
-                {/* Highlights List */}
-                <ul className="mt-3 pt-3 border-t border-ink/10 space-y-1.5 text-xs sm:text-sm text-ink/80">
-                  {pillar.features.map((feat, idx) => (
-                    <li key={idx} className="flex items-center gap-2">
-                      <span className="w-1.5 h-1.5 bg-maroon rounded-full shrink-0" />
-                      <span>{feat}</span>
-                    </li>
-                  ))}
-                </ul>
+      // STRICTLY DESKTOP PINNING (>= 768px)
+      mm.add('(min-width: 768px)', () => {
+        const cards = cardsRef.current;
+        const buttons = buttonsRef.current;
+        if (!cards.length || !sectionRef.current) return;
 
-                {/* Learn More link pointing to Services anchor */}
-                <div className="pt-4 mt-2">
-                  <a
-                    href={pillar.link}
-                    className="touch-target inline-flex items-center justify-center gap-2 w-full py-2.5 px-4 bg-teal hover:bg-teal-dark text-cream font-serif font-bold text-xs sm:text-sm uppercase tracking-wider border-[1.5px] border-teal shadow-sm transition-colors group"
-                  >
-                    <span>Learn More in Services</span>
-                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                  </a>
-                </div>
-              </BrochurePanel>
+        // Ensure initial DOM state: Card 0 visible; Cards 1..3 hidden below
+        gsap.set(cards[0], { opacity: 1, y: 0, pointerEvents: 'auto', zIndex: 10 });
+        for (let i = 1; i < cards.length; i++) {
+          gsap.set(cards[i], { opacity: 0, y: 30, pointerEvents: 'none', zIndex: 1 });
+        }
+
+        // Master Scrubbed Timeline - 100% tied to scroll position
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top top+=70',
+            end: '+=1800',
+            pin: true,
+            pinSpacing: true,
+            scrub: 0.8, // Smooth 0.8s catch-up to scroll position
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+          },
+        });
+
+        // Sequence transitions between the 4 cards
+        for (let i = 0; i < cards.length - 1; i++) {
+          const currentCard = cards[i];
+          const nextCard = cards[i + 1];
+          const currentBtn = buttons[i];
+          const nextBtn = buttons[i + 1];
+
+          // Outgoing card fades & moves slightly up
+          tl.to(currentCard, {
+            opacity: 0,
+            y: -24,
+            pointerEvents: 'none',
+            duration: 1,
+            ease: 'power2.inOut',
+          });
+
+          // Incoming card fades in & moves from bottom into place
+          tl.to(
+            nextCard,
+            {
+              opacity: 1,
+              y: 0,
+              pointerEvents: 'auto',
+              zIndex: 10,
+              duration: 1,
+              ease: 'power2.inOut',
+            },
+            '<' // synchronous crossfade
+          );
+
+          // Update button states simultaneously
+          if (currentBtn && nextBtn) {
+            tl.to(
+              currentBtn,
+              {
+                opacity: 0.55,
+                backgroundColor: 'transparent',
+                borderColor: 'transparent',
+                duration: 0.5,
+              },
+              '<'
             );
-          })}
+            tl.to(
+              nextBtn,
+              {
+                opacity: 1,
+                backgroundColor: '#FAF7F2',
+                borderColor: 'rgba(0, 0, 0, 0.08)',
+                duration: 0.5,
+              },
+              '<'
+            );
+          }
+        }
+      });
+    }, sectionRef);
+
+    // Refresh ScrollTrigger after layout stabilizes to avoid offset jumps
+    const timer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 150);
+
+    return () => {
+      clearTimeout(timer);
+      ctx.revert(); // Guaranteed cleanup on unmount / route changes
+    };
+  }, []);
+
+  return (
+    <section 
+      id="services" 
+      ref={sectionRef}
+      className="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 bg-cream-50 relative overflow-hidden"
+    >
+      <div className="max-w-6xl mx-auto space-y-8 sm:space-y-10">
+        
+        {/* Section Title */}
+        <div className="text-center max-w-2xl mx-auto space-y-2">
+          <span className="text-xs font-sans font-semibold uppercase tracking-widest text-teal block">
+            Core Service Pillars
+          </span>
+          <BrochureHeading as="h2" size="lg" align="center" color="teal">
+            Our Services
+          </BrochureHeading>
+          <p className="text-sm sm:text-base text-ink/70 font-sans">
+            Comprehensive healthcare delivered at your home or clinic in South Kolkata.
+          </p>
         </div>
 
-        {/* Subtle note directing to full services page */}
-        <div className="text-center pt-2">
-          <p className="text-xs text-ink/75 font-sans">
-            Full diagnostic lists, vaccine schedules, procedure menus, and package pricing available in our comprehensive services directory.
-          </p>
+        {/* =====================================================================
+            DESKTOP PINNED SHOWCASE (Visible on md: screens and above)
+            Single GSAP scrub controller - Zero React state churn during scroll.
+            ===================================================================== */}
+        <div className="hidden md:block">
+          <div className="bg-white rounded-3xl p-8 lg:p-10 shadow-card border border-black/[0.04]">
+            <div className="grid grid-cols-12 gap-8 items-center">
+              
+              {/* Left Column: Progress Step Indicators */}
+              <div className="col-span-5 space-y-3">
+                <span className="text-xs font-mono font-bold uppercase tracking-wider text-ink/50 block mb-2">
+                  Scroll to Explore 4 Core Pillars
+                </span>
+
+                <div className="space-y-2">
+                  {categories.map((cat, idx) => {
+                    const Icon = cat.icon;
+                    const isFirst = idx === 0;
+
+                    return (
+                      <div
+                        key={cat.id}
+                        ref={(el) => (buttonsRef.current[idx] = el)}
+                        className={`w-full p-4 rounded-2xl flex items-center justify-between transition-colors border ${
+                          isFirst
+                            ? 'bg-cream-50 opacity-100 border-black/[0.08] shadow-sm'
+                            : 'bg-transparent opacity-55 border-transparent'
+                        }`}
+                        style={{ willChange: 'opacity, background-color' }}
+                      >
+                        <div className="flex items-center gap-3">
+                          <div className={`w-9 h-9 rounded-xl flex items-center justify-center ${cat.bgTint}`}>
+                            <Icon className="w-4 h-4" />
+                          </div>
+                          <div>
+                            <span className="text-[10px] font-mono text-ink/50 uppercase block">
+                              Step {cat.step}
+                            </span>
+                            <span className="font-sans font-bold text-sm text-ink">
+                              {cat.title}
+                            </span>
+                          </div>
+                        </div>
+
+                        <div className="w-2 h-2 rounded-full bg-maroon shrink-0" />
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Right Column: Absolutely-Positioned Category Display Panels */}
+              <div className="col-span-7 relative min-h-[380px]">
+                {categories.map((cat, idx) => {
+                  const Icon = cat.icon;
+                  return (
+                    <div
+                      key={cat.id}
+                      ref={(el) => (cardsRef.current[idx] = el)}
+                      className="absolute inset-0 bg-cream-50/90 rounded-2xl p-8 border border-black/[0.05] flex flex-col justify-between"
+                      style={{
+                        willChange: 'transform, opacity',
+                        transform: 'translateZ(0)',
+                      }}
+                    >
+                      <div className="space-y-4">
+                        <div className="flex items-center justify-between">
+                          <div className={`w-14 h-14 rounded-2xl flex items-center justify-center ${cat.bgTint}`}>
+                            <Icon className="w-7 h-7" />
+                          </div>
+                          <span className="text-xs font-mono font-bold text-ink/60 bg-white px-3 py-1 rounded-full shadow-sm">
+                            Pillar {cat.step} of 04
+                          </span>
+                        </div>
+
+                        <div>
+                          <h3 className="font-sans font-bold text-2xl text-ink">
+                            {cat.title}
+                          </h3>
+                          <p className="text-base text-ink/75 font-sans leading-relaxed mt-2">
+                            {cat.description}
+                          </p>
+                        </div>
+
+                        <ul className="space-y-1.5 pt-1">
+                          {cat.features.map((feat, i) => (
+                            <li key={i} className="flex items-center gap-2 text-sm text-ink/80">
+                              <Check className="w-4 h-4 text-teal shrink-0" />
+                              <span>{feat}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      <div className="pt-4 border-t border-black/[0.06]">
+                        <Link
+                          to={cat.href}
+                          className="touch-target inline-flex items-center gap-2 text-sm font-bold text-teal hover:text-teal-dark group transition-colors"
+                        >
+                          <span>Explore {cat.title} services</span>
+                          <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                        </Link>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        {/* =====================================================================
+            MOBILE STACKED REVEAL (Visible below 768px)
+            Clean, native touch cards (no pinning on mobile for 60fps scroll).
+            ===================================================================== */}
+        <div className="md:hidden space-y-4">
+          {categories.map((cat) => (
+            <div key={cat.id}>
+              <ServiceCard
+                icon={cat.icon}
+                title={cat.title}
+                description={cat.description}
+                href={cat.href}
+                accentColor={cat.accentColor}
+              />
+            </div>
+          ))}
         </div>
 
       </div>

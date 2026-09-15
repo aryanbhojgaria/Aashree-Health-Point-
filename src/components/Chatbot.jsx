@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { MessageCircle, X, Send, Clock, MapPin, Phone, FlaskConical, Home, Stethoscope, ChevronRight, Bot, User, Activity } from 'lucide-react';
+import { X, Send, Clock, MapPin, Phone, FlaskConical, Home, Stethoscope, Bot, Activity } from 'lucide-react';
 
 /* =========================================================================
    CHATBOT KNOWLEDGE BASE & CONVERSATION FLOWS
@@ -9,9 +9,10 @@ import { MessageCircle, X, Send, Clock, MapPin, Phone, FlaskConical, Home, Steth
 
 const CLINIC_INFO = {
   name: "Aashree Health Point",
-  phone1: "9443343502",
-  phone2: "7858974548",
-  whatsapp: "919443343502",
+  phone1: "7003799755",
+  phone2: "9443343502",
+  phoneAlt: "7596905078 / 7858974548",
+  whatsapp: "917003799755",
   email: "healthpointaashree@gmail.com",
   address: "1332, Rishi Raj Narayan Rd, Niva Park Extension, Brahmapur, Kolkata - 700096",
   landmark: "Near Niva Park Extension, Near Tolly Turf Arena",
@@ -340,8 +341,8 @@ export default function Chatbot() {
                 Aashree Health Point
               </h3>
               <div className="flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                <span className="text-[11px] text-white/80 font-medium">Online • Typically replies instantly</span>
+                <span className="w-2 h-2 rounded-full bg-cream ring-2 ring-white/30 animate-pulse" />
+                <span className="text-[11px] text-white/90 font-medium">Online • Instant Medical Assistance</span>
               </div>
             </div>
             <button 

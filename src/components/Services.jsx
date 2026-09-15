@@ -8,16 +8,14 @@ import {
   Sparkles,
   Droplets,
   CalendarCheck2,
-  Stethoscope,
-  Home,
-  TestTube2
+  Stethoscope
 } from 'lucide-react';
 import { useInView } from '../hooks/useInView';
 
 /* 
   ENHANCED SERVICES SECTION:
   1. Custom Line-Art Illustrations: Crafted dedicated SVG motifs for Doctor Consultations,
-     Lab Testing, and Home Services with distinct visual identity in sage green (#769382) and coral (#D96B43).
+     Lab Testing, and Home Services with distinct visual identity in deep teal (#1A4D4D) and coral (#D98878).
   2. Scroll-Triggered Motion: Staggered entrance animations (via useInView) as cards enter viewport.
   3. Desktop Hover Lift: Upward translation (-translate-y-1.5), luminous border accents, and shadow depth.
   4. Accessibility: Seamless fallback for prefers-reduced-motion without transform animations.
@@ -30,7 +28,7 @@ export default function Services() {
     <section 
       ref={sectionRef}
       id="services" 
-      className="relative bg-[#ECEFEA] py-16 sm:py-20 lg:py-24 overflow-hidden border-t border-ink-border/50 scroll-mt-16 sm:scroll-mt-20"
+      className="relative bg-cream-50 py-16 sm:py-20 lg:py-24 overflow-hidden border-t border-ink-border/20 scroll-mt-16 sm:scroll-mt-20"
     >
       {/* Background ambient gradient accents */}
       <div className="absolute top-1/4 right-0 w-96 h-96 rounded-full bg-secondary/25 blur-3xl pointer-events-none" />
@@ -71,18 +69,18 @@ export default function Services() {
               ======================================================================= */}
           <div 
             style={{ transitionDelay: isSectionInView ? '100ms' : '0ms' }}
-            className={`lg:col-span-7 rounded-3xl bg-cream-50 border border-ink-border p-6 sm:p-8 sm:p-10 shadow-warm flex flex-col justify-between relative overflow-hidden group hover:-translate-y-1.5 hover:border-primary/50 hover:shadow-warm-lg transition-all duration-300 ${
+            className={`lg:col-span-7 rounded-3xl bg-cream-50 border border-ink-border p-6 sm:p-8 lg:p-10 shadow-warm flex flex-col justify-between relative overflow-hidden group hover:-translate-y-1.5 hover:border-primary/50 hover:shadow-warm-lg transition-all duration-300 ${
               isSectionInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8 motion-reduce:translate-y-0'
             }`}
           >
             {/* Custom Line-Art Background Watermark (Stylized Stethoscope & Heart Pulse) */}
             <div className="absolute -right-6 -bottom-6 w-52 h-52 pointer-events-none opacity-25 group-hover:opacity-40 group-hover:scale-105 transition-all duration-500">
               <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-                <circle cx="100" cy="100" r="85" stroke="#769382" strokeWidth="2" strokeDasharray="6 6" />
-                <path d="M60 80c0-22.091 17.909-40 40-40s40 17.909 40 40v30c0 16.569-13.431 30-30 30h-20c-16.569 0-30-13.431-30-30V80z" stroke="#769382" strokeWidth="3" strokeLinecap="round" />
-                <circle cx="140" cy="80" r="14" fill="#D96B43" fillOpacity="0.4" stroke="#D96B43" strokeWidth="2.5" />
-                <circle cx="60" cy="80" r="10" stroke="#769382" strokeWidth="2.5" />
-                <path d="M80 140l10 18 15-28 10 14h15" stroke="#2B2A26" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                <circle cx="100" cy="100" r="85" stroke="#1A4D4D" strokeWidth="2" strokeDasharray="6 6" />
+                <path d="M60 80c0-22.091 17.909-40 40-40s40 17.909 40 40v30c0 16.569-13.431 30-30 30h-20c-16.569 0-30-13.431-30-30V80z" stroke="#1A4D4D" strokeWidth="3" strokeLinecap="round" />
+                <circle cx="140" cy="80" r="14" fill="#D98878" fillOpacity="0.4" stroke="#D98878" strokeWidth="2.5" />
+                <circle cx="60" cy="80" r="10" stroke="#1A4D4D" strokeWidth="2.5" />
+                <path d="M80 140l10 18 15-28 10 14h15" stroke="#2B1810" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </div>
 
@@ -92,11 +90,11 @@ export default function Services() {
                 <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-primary-dark text-white flex items-center justify-center shadow-warm group-hover:scale-105 group-hover:rotate-1 transition-all duration-300">
                   {/* Custom Stethoscope + Heart Line Art */}
                   <svg width="30" height="30" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M8 6v8a8 8 0 0 0 16 0V6" stroke="#F3EFE3" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                    <path d="M16 22v3a3 3 0 0 0 3 3h3a3 3 0 0 0 3-3v-1" stroke="#F3EFE3" strokeWidth="2.5" strokeLinecap="round" />
-                    <circle cx="25" cy="24" r="3.5" fill="#D96B43" stroke="#F3EFE3" strokeWidth="1.5" />
-                    <circle cx="8" cy="6" r="2.5" fill="#F3EFE3" />
-                    <circle cx="24" cy="6" r="2.5" fill="#F3EFE3" />
+                    <path d="M8 6v8a8 8 0 0 0 16 0V6" stroke="#F0E4D0" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M16 22v3a3 3 0 0 0 3 3h3a3 3 0 0 0 3-3v-1" stroke="#F0E4D0" strokeWidth="2.5" strokeLinecap="round" />
+                    <circle cx="25" cy="24" r="3.5" fill="#D98878" stroke="#F0E4D0" strokeWidth="1.5" />
+                    <circle cx="8" cy="6" r="2.5" fill="#F0E4D0" />
+                    <circle cx="24" cy="6" r="2.5" fill="#F0E4D0" />
                   </svg>
                 </div>
                 <span className="text-xs font-semibold uppercase tracking-wider text-primary-dark bg-primary-subtle px-3 py-1.5 rounded-full border border-primary/20 shadow-warm-sm">
@@ -147,19 +145,19 @@ export default function Services() {
               ======================================================================= */}
           <div 
             style={{ transitionDelay: isSectionInView ? '220ms' : '0ms' }}
-            className={`lg:col-span-5 rounded-3xl bg-primary-surface border-2 border-primary/40 p-6 sm:p-8 sm:p-10 shadow-warm flex flex-col justify-between relative overflow-hidden group hover:-translate-y-1.5 hover:border-primary hover:shadow-warm-lg transition-all duration-300 ${
+            className={`lg:col-span-5 rounded-3xl bg-primary-surface border-2 border-primary/40 p-6 sm:p-8 lg:p-10 shadow-warm flex flex-col justify-between relative overflow-hidden group hover:-translate-y-1.5 hover:border-primary hover:shadow-warm-lg transition-all duration-300 ${
               isSectionInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8 motion-reduce:translate-y-0'
             }`}
           >
             {/* Custom Line-Art Background Watermark (Test Tube Reaction & Optical Grid) */}
             <div className="absolute -right-6 -bottom-6 w-48 h-48 pointer-events-none opacity-20 group-hover:opacity-35 group-hover:scale-105 transition-all duration-500">
               <svg viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-                <circle cx="90" cy="90" r="75" stroke="#D96B43" strokeWidth="2" strokeDasharray="4 4" />
-                <path d="M60 40h20v60a10 10 0 0 1-20 0V40z" stroke="#D96B43" strokeWidth="3" />
-                <path d="M100 30h20v80a10 10 0 0 1-20 0V30z" stroke="#769382" strokeWidth="3" />
-                <circle cx="70" cy="80" r="3" fill="#D96B43" />
-                <circle cx="110" cy="95" r="4" fill="#769382" />
-                <circle cx="110" cy="70" r="2.5" fill="#769382" />
+                <circle cx="90" cy="90" r="75" stroke="#D98878" strokeWidth="2" strokeDasharray="4 4" />
+                <path d="M60 40h20v60a10 10 0 0 1-20 0V40z" stroke="#D98878" strokeWidth="3" />
+                <path d="M100 30h20v80a10 10 0 0 1-20 0V30z" stroke="#1A4D4D" strokeWidth="3" />
+                <circle cx="70" cy="80" r="3" fill="#D98878" />
+                <circle cx="110" cy="95" r="4" fill="#1A4D4D" />
+                <circle cx="110" cy="70" r="2.5" fill="#1A4D4D" />
               </svg>
             </div>
 
@@ -229,9 +227,9 @@ export default function Services() {
             {/* Custom Line-Art Background Watermark (Home Medical Cross & Care Coordinates) */}
             <div className="absolute -right-8 -bottom-8 w-64 h-64 pointer-events-none opacity-20 group-hover:opacity-35 group-hover:scale-105 transition-all duration-500">
               <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-                <circle cx="100" cy="100" r="90" stroke="#769382" strokeWidth="1.5" strokeDasharray="5 5" />
-                <path d="M40 110l60-45 60 45v55a5 5 0 0 1-5 5H45a5 5 0 0 1-5-5v-55z" stroke="#2B2A26" strokeWidth="2.5" />
-                <path d="M100 120v30m-15-15h30" stroke="#D96B43" strokeWidth="3.5" strokeLinecap="round" />
+                <circle cx="100" cy="100" r="90" stroke="#1A4D4D" strokeWidth="1.5" strokeDasharray="5 5" />
+                <path d="M40 110l60-45 60 45v55a5 5 0 0 1-5 5H45a5 5 0 0 1-5-5v-55z" stroke="#2B1810" strokeWidth="2.5" />
+                <path d="M100 120v30m-15-15h30" stroke="#D98878" strokeWidth="3.5" strokeLinecap="round" />
               </svg>
             </div>
 
@@ -243,8 +241,8 @@ export default function Services() {
                   <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-ink to-ink-light text-cream flex items-center justify-center shadow-warm group-hover:scale-105 transition-all duration-300">
                     {/* Custom Home + Medical Cross Motif */}
                     <svg width="30" height="30" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M6 14L16 6l10 8v12a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V14z" stroke="#F3EFE3" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                      <path d="M16 16v6M13 19h6" stroke="#D96B43" strokeWidth="2.5" strokeLinecap="round" />
+                      <path d="M6 14L16 6l10 8v12a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V14z" stroke="#F0E4D0" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                      <path d="M16 16v6M13 19h6" stroke="#D98878" strokeWidth="2.5" strokeLinecap="round" />
                     </svg>
                   </div>
                   <span className="text-xs font-bold text-white bg-primary-dark px-3.5 py-1.5 rounded-full uppercase tracking-wider shadow-warm-sm">

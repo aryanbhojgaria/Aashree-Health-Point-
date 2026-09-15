@@ -91,7 +91,7 @@ export default function FAQ() {
     <section 
       ref={sectionRef}
       id="faq" 
-      className="relative bg-[#ECEFEA] py-16 sm:py-20 lg:py-24 overflow-hidden border-t border-ink-border/50 scroll-mt-16 sm:scroll-mt-20"
+      className="relative bg-cream-100 py-16 sm:py-20 lg:py-24 overflow-hidden border-t border-ink-border/20 scroll-mt-16 sm:scroll-mt-20"
     >
       {/* Subtle background texture */}
       <div className="absolute inset-0 bg-dot-pattern opacity-30 pointer-events-none" />

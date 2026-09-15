@@ -1,55 +1,59 @@
-import React, { useState } from 'react';
-import StyleGuidePreview from './components/StyleGuidePreview';
+import React, { useEffect } from 'react';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import Services from './components/Services';
-import WhyChooseUs from './components/WhyChooseUs';
-import Location from './components/Location';
-import FAQ from './components/FAQ';
 import ContactFooter from './components/ContactFooter';
-import Chatbot from './components/Chatbot';
+import HomePage from './pages/HomePage';
+import AboutPage from './pages/AboutPage';
+import ServicesPage from './pages/ServicesPage';
+import ContactPage from './pages/ContactPage';
+
+/**
+ * ScrollToTop ensures the viewport resets to the top on every route change.
+ * If a hash is provided (e.g. /services#diagnostics), it smooth-scrolls to the target anchor.
+ */
+function ScrollToTop() {
+  const { pathname, hash } = useLocation();
+
+  useEffect(() => {
+    if (hash) {
+      const id = hash.replace('#', '');
+      const timer = setTimeout(() => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+      return () => clearTimeout(timer);
+    } else {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    }
+  }, [pathname, hash]);
+
+  return null;
+}
 
 export default function App() {
-  // Temporary view toggle: defaults to the new brochure style-guide preview
-  const [currentView, setCurrentView] = useState('styleguide');
-
-  if (currentView === 'styleguide') {
-    return (
-      <StyleGuidePreview onSwitchToSite={() => setCurrentView('site')} />
-    );
-  }
-
   return (
-    <div className="min-h-screen bg-coral text-ink font-sans flex flex-col selection:bg-teal selection:text-cream relative">
-      {/* Return to Style Guide Banner */}
-      <aside aria-label="Style Guide Notice" className="bg-ink text-cream px-4 py-2 text-xs flex items-center justify-between z-50">
-        <span>Previewing existing site structure with updated global tokens.</span>
-        <button
-          type="button"
-          onClick={() => setCurrentView('styleguide')}
-          className="bg-coral hover:bg-coral-light text-ink font-bold px-3 py-1 text-xs cursor-pointer transition-colors"
-        >
-          Back to Brochure Style Guide &rarr;
-        </button>
-      </aside>
+    <BrowserRouter>
+      <ScrollToTop />
+      <div className="min-h-screen bg-coral text-ink font-sans flex flex-col selection:bg-teal selection:text-cream antialiased">
+        {/* Top Navigation Bar — visible on all pages */}
+        <Navbar />
 
-      {/* Brand Navigation Bar */}
-      <Navbar />
+        {/* Main Routed Page Content */}
+        <main className="flex-1">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/services" element={<ServicesPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </main>
 
-      {/* Complete Single-Page Flow */}
-      <main className="flex-1">
-        <Hero />
-        <Services />
-        <WhyChooseUs />
-        <Location />
-        <FAQ />
-      </main>
-
-      {/* Contact & Closing Footer */}
-      <ContactFooter />
-
-      {/* Floating Chatbot Widget */}
-      <Chatbot />
-    </div>
+        {/* Shared Footer — visible on all pages with condensed contact & route links */}
+        <ContactFooter />
+      </div>
+    </BrowserRouter>
   );
 }
