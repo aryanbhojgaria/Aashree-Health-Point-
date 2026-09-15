@@ -26,7 +26,7 @@ export default function HomePage() {
 
       {/* 4. Brief Contact CTA */}
       <section className="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
-        <div className="bg-white rounded-3xl p-6 sm:p-10 shadow-card border border-black/[0.05] text-center space-y-6">
+        <div className="bg-[#FAF0ED] rounded-3xl p-6 sm:p-10 shadow-card border border-black/[0.05] text-center space-y-6">
           <div className="space-y-2 max-w-2xl mx-auto">
             <span className="text-xs font-mono font-bold uppercase tracking-wider text-maroon block">
               Direct Assistance &bull; 24x7 Coordination
