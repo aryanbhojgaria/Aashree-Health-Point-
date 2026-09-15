@@ -24,7 +24,7 @@ export default function ContactPage() {
         
         {/* Editorial Page Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/40 border border-ink/10 text-xs font-semibold text-ink uppercase tracking-wider shadow-sm">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FAF0ED]/60 border border-ink/10 text-xs font-semibold text-ink uppercase tracking-wider shadow-sm">
             <Sparkles className="w-3.5 h-3.5 text-maroon" />
             <span>24x7 Reachable Healthcare &bull; South Kolkata</span>
           </div>
@@ -51,7 +51,7 @@ export default function ContactPage() {
           <div className="lg:col-span-6 space-y-6 flex flex-col justify-between">
             
             {/* Primary & Secondary Phone Card */}
-            <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-card border border-black/[0.04] space-y-6">
+            <div className="bg-[#FAF0ED] rounded-3xl p-6 sm:p-8 shadow-card border border-black/[0.04] space-y-6">
               
               <div className="flex items-center justify-between border-b border-black/[0.06] pb-4">
                 <div className="flex items-center gap-3">
@@ -67,7 +67,7 @@ export default function ContactPage() {
                     </h2>
                   </div>
                 </div>
-                <span className="text-[11px] font-bold text-white bg-maroon px-2.5 py-1 rounded-full uppercase tracking-wider">
+                <span className="text-[11px] font-bold text-cream bg-maroon px-2.5 py-1 rounded-full uppercase tracking-wider">
                   Verified
                 </span>
               </div>
@@ -110,7 +110,7 @@ export default function ContactPage() {
                     href="https://wa.me/917003799755"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="touch-target flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-white text-ink font-bold text-sm hover:bg-cream-50 border border-black/[0.08] shadow-sm transition-all"
+                    className="touch-target flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-[#FAF0ED] text-ink font-bold text-sm hover:bg-[#F5E5E0] border border-black/[0.08] shadow-sm transition-all"
                   >
                     <MessageCircle className="w-4 h-4 text-teal" />
                     <span>WhatsApp Chat</span>
@@ -163,7 +163,7 @@ export default function ContactPage() {
             </div>
 
             {/* Clinic Timings & Consultation Hours Card */}
-            <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-card border border-black/[0.04] space-y-4">
+            <div className="bg-[#FAF0ED] rounded-3xl p-6 sm:p-8 shadow-card border border-black/[0.04] space-y-4">
               <div className="flex items-center gap-2.5 text-teal">
                 <Clock className="w-5 h-5" />
                 <h3 className="font-serif font-bold text-lg text-ink">
@@ -204,7 +204,7 @@ export default function ContactPage() {
           </div>
 
           {/* RIGHT COLUMN (6 cols): Address, Landmark & Interactive Google Map */}
-          <div className="lg:col-span-6 bg-white rounded-3xl p-6 sm:p-8 shadow-card border border-black/[0.04] flex flex-col justify-between space-y-6">
+          <div className="lg:col-span-6 bg-[#FAF0ED] rounded-3xl p-6 sm:p-8 shadow-card border border-black/[0.04] flex flex-col justify-between space-y-6">
             
             <div className="space-y-4">
               <div className="flex items-center justify-between border-b border-black/[0.06] pb-4">
