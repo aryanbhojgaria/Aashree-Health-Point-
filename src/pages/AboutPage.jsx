@@ -50,7 +50,7 @@ export default function AboutPage() {
         
         {/* Editorial Page Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/40 border border-ink/10 text-xs font-semibold text-ink uppercase tracking-wider shadow-sm">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FAF0ED]/60 border border-ink/10 text-xs font-semibold text-ink uppercase tracking-wider shadow-sm">
             <Sparkles className="w-3.5 h-3.5 text-maroon" />
             <span>Official Brochure Profile &bull; [Inspiring Health]</span>
           </div>
@@ -74,7 +74,7 @@ export default function AboutPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 items-stretch">
           
           {/* OUR MISSION */}
-          <div className="bg-white rounded-3xl p-6 sm:p-8 lg:p-10 shadow-card hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between border border-black/[0.04]">
+          <div className="bg-[#FAF0ED] rounded-3xl p-6 sm:p-8 lg:p-10 shadow-card hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between border border-black/[0.04]">
             <div>
               <div className="flex items-center justify-between mb-4">
                 <span className="text-xs font-mono font-bold uppercase tracking-widest text-maroon px-3 py-1 rounded-full bg-maroon/10">
@@ -105,7 +105,7 @@ export default function AboutPage() {
           </div>
 
           {/* OUR VISION */}
-          <div className="bg-white rounded-3xl p-6 sm:p-8 lg:p-10 shadow-card hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between border border-black/[0.04]">
+          <div className="bg-[#FAF0ED] rounded-3xl p-6 sm:p-8 lg:p-10 shadow-card hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between border border-black/[0.04]">
             <div>
               <div className="flex items-center justify-between mb-4">
                 <span className="text-xs font-mono font-bold uppercase tracking-widest text-teal px-3 py-1 rounded-full bg-teal/10">
@@ -151,7 +151,7 @@ export default function AboutPage() {
         </div>
 
         {/* Full Brochure Narrative Card */}
-        <div className="bg-white rounded-3xl p-6 sm:p-10 lg:p-12 shadow-card border border-black/[0.04] space-y-6">
+        <div className="bg-[#FAF0ED] rounded-3xl p-6 sm:p-10 lg:p-12 shadow-card border border-black/[0.04] space-y-6">
           <div className="border-b border-black/[0.06] pb-5">
             <span className="text-xs font-mono font-bold uppercase tracking-wider text-teal block mb-1">
               Who We Are
@@ -216,7 +216,7 @@ export default function AboutPage() {
               return (
                 <div
                   key={idx}
-                  className="bg-white rounded-2xl p-6 shadow-card hover:shadow-card-hover transition-all duration-300 border border-black/[0.04] flex flex-col justify-between"
+                  className="bg-[#FAF0ED] rounded-2xl p-6 shadow-card hover:shadow-card-hover transition-all duration-300 border border-black/[0.04] flex flex-col justify-between"
                 >
                   <div className="space-y-3">
                     <div className="w-11 h-11 rounded-xl bg-coral-subtle flex items-center justify-center text-teal">
@@ -258,7 +258,7 @@ export default function AboutPage() {
               href="https://wa.me/917003799755"
               target="_blank"
               rel="noopener noreferrer"
-              className="touch-target inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-ink font-bold text-sm hover:bg-cream-50 transition-all shadow-sm"
+              className="touch-target inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#FAF0ED] text-ink font-bold text-sm hover:bg-[#F5E5E0] transition-all shadow-sm"
             >
               <MessageCircle className="w-4 h-4 text-teal" />
               <span>WhatsApp Us</span>
